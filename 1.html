@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Students Corner</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fffaf5;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.5em;
+      color: #8a4c0f;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      text-decoration: none;
+      color: #8a4c0f;
+      max-width:210px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      padding: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('navbar-container').innerHTML = data);
+  </script>
+
+  <h1>Students Corner</h1>
+  <center><h2>BTech Students</h2></center>
+  <div class="grid">
+    <a class="card" href="students_corner/btechy1.html">
+      <img src="files/images/cme.jpeg" alt="BTech 1 Students" />
+      <div class="card-title">BTech 1 Students</div>
+    </a>
+    <a class="card" href="students_corner/btechy2.html">
+      <img src="files/images/cme.jpeg" alt="BTech 2 Students" />
+      <div class="card-title">BTech 2 Students</div>
+    </a>
+    <a class="card" href="students_corner/btechy3.html">
+      <img src="files/images/cme.jpeg" alt="BTech 3 Students" />
+      <div class="card-title">BTech 3 Students</div>
+    </a>
+    <a class="card" href="students_corner/btechy4.html">
+      <img src="files/images/cme.jpeg" alt="BTech 4 Students" />
+      <div class="card-title">BTech 4 Students</div>
+    </a>
+  </div>
+
+  <center><h2>MSc Students</h2></center>
+  <div class="grid">
+    <a class="card" href="students_corner/mscy1.html">
+      <img src="files/images/cme.jpeg" alt="MSc 1 Students" />
+      <div class="card-title">MSc 1 Students</div>
+    </a>
+    <a class="card" href="students_corner/mscy2.html">
+      <img src="files/images/cmt.jpeg" alt="MSC 2 Students" />
+      <div class="card-title">MSc 1 Students</div>
+    </a>
+  </div>
+
+  <center><h2>PhD Students</h2></center>
+  <div class="grid">
+    <a class="card" href="students_corner/phdstuy1.html">
+      <img src="files/images/cme.jpeg" alt="PhD 1 Students" />
+      <div class="card-title">PhD 1 Students</div>
+    </a>
+    <a class="card" href="students_corner/phdstuy2.html">
+      <img src="files/images/cme.jpeg" alt="PhD 2 Students" />
+      <div class="card-title">PhD 2 Students</div>
+    </a>
+    <a class="card" href="students_corner/phdstuy3.html">
+      <img src="files/images/cme.jpeg" alt="PhD 3 Students" />
+      <div class="card-title">PhD 3 Students</div>
+    </a>
+    <a class="card" href="students_corner/phdstuy4.html">
+      <img src="files/images/cme.jpeg" alt="PhD 4 Students" />
+      <div class="card-title">PhD 4 Students</div>
+    </a>
+    <a class="card" href="students_corner/phdstuy5.html">
+      <img src="files/images/cme.jpeg" alt="PhD 5 Students" />
+      <div class="card-title">PhD 5 Students</div>
+    </a>
+    <a class="card" href="students_corner/phdstuy6.html">
+      <img src="files/images/cme.jpeg" alt="PhD 6 Students" />
+      <div class="card-title">PhD 6 Students</div>
+    </a>
+    <a class="card" href="students_corner/gradphds.html">
+      <img src="files/images/cme.jpeg" alt="Graduated PhDs" />
+      <div class="card-title">Graduated PhD Students</div>
+    </a>
+  </div>
+  
+  <div id="footer-placeholder"></div>
+
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+  <script src="script.js"></script>
+</body>
+</html>

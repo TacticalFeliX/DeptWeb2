@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHD STUDENTSs</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #3a2c19;
+    }
+
+    .container {
+        max-width: 1500px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2678c5;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .student-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 25px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .student-card {
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .student-card img {
+        width: 100px;
+        height: 120px;
+        border-radius: 16px;
+        object-fit: cover;
+        margin-bottom: 12px;
+        border: 4px solid #ffffff;
+    }
+
+    .student-details {
+        background-color: #2678c5;
+        color: white;
+        border-radius: 10px;
+        width: 100%;
+        padding: 8px 12px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 80px;
+        /* Adjust as needed for uniform height */
+    }
+
+    .student-name,
+    .student-roll {
+        font-size: 0.95em;
+        font-weight: bold;
+        margin: 2px 0;
+        line-height: 1.2em;
+    }
+
+    .sub-navbar {
+        background-color: rgb(255, 250, 240);
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 10px 0;
+        font-size: 0.8em;
+    }
+
+    .sub-navbar a {
+        color: #5a3208;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .sub-navbar a:hover {
+        color: rgb(0, 0, 0);
+    }
+
+    a.selected {
+        color: #2678c5;
+        text-decoration: underline;
+        border-radius: 5px;
+    }
+</style>
+
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-container').innerHTML = data);
+    </script>
+    <div class="sub-navbar">
+        <a href="../stucorner.html">Students Corner</a>
+        <a href="phdstuy1.html">PHD YEAR 1</a>
+        <a href="phdstuy2.html">PHD YEAR 2</a>
+        <a href="phdstuy3.html">PHD YEAR 3</a>
+        <a href="phdstuy4.html">PHD YEAR 4</a>
+        <a href="phdstuy5.html" class="selected">PHD YEAR 5</a>
+        <a href="phdstuy6.html">PHD YEAR 6</a>
+        <a href="gradphds.html">GRADUATED PHDS</a>
+    </div>
+    <div class="container">
+        <center>
+            <h2>PhD 5TH YEAR STUDENTS</h2>
+        </center>
+
+    </div>
+
+    <div class="student-grid" id="student-grid"></div>
+
+    <script>
+        const targetProgram = "PhD";
+        const targetYear = 5;
+
+        fetch('studetails.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: true,
+                    transformHeader: h => h.trim(),
+                    complete: function (results) {
+                        const studentData = results.data;
+                        const container = document.getElementById('student-grid');
+
+                        studentData.forEach(student => {
+                            if (
+                                student.Program?.trim().toLowerCase() === targetProgram.toLowerCase() &&
+                                Number(student.Year) === targetYear
+                            ) {
+                                const card = document.createElement('div');
+                                card.className = 'student-card';
+
+                                card.innerHTML = `
+                                <img src="files/stuimages/${student.imgsource.trim()}" alt="${student.Name}" />
+                                <div class="student-details">
+                                    <p class="student-name">${student.Name}</p>
+                                    <p class="student-roll">${student.RollNo}</p>
+                                </div>
+                            `;
+
+                                container.appendChild(card);
+                            }
+                        });
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Failed to load or render student data:", error);
+                document.getElementById('student-grid').innerHTML =
+                    "<p style='color:red;'>Failed to load student data.</p>";
+            });
+    </script>
+
+    </script>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>
